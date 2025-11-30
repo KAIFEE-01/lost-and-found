@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="form-container" id="found-form">
+        <h1 class="form-title">Report a Found Item</h1>
+        
+        <form action="/report-found" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title" class="form-label">Item Name</label>
+                <input type="text" id="title" name="title" class="form-input" required placeholder="E.g., Blue Backpack, iPhone 13, etc.">
+            </div>
+            
+            <div class="form-group">
+                <label for="category" class="form-label">Category</label>
+                <select id="category" name="category" class="form-select" required>
+                    <option value="">Select a category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Identification">Identification</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Books">Books</option>
+                    <option value="Jewelry">Jewelry</option>
+                    <option value="Keys">Keys</option>
+                    <option value="Water Bottle">Water Bottle</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" name="description" class="form-textarea" required placeholder="Please provide detailed information about the item (color, brand, identifying features, etc.)"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="date_found" class="form-label">Date Found</label>
+                <input type="date" id="date_found" name="date_found" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" id="location" name="location" class="form-input" required placeholder="Where was the item found?">
+            </div>
+            
+            <div class="form-group">
+                <label for="image" class="form-label">Image (Optional)</label>
+                <input type="file" id="image" name="image" class="form-input" accept="image/*">
+                <small>NOTE: Image upload is disabled in the demo. A default image will be used.</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="contact_name" class="form-label">Your Name</label>
+                <input type="text" id="contact_name" name="contact_name" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="contact_email" class="form-label">Email Address</label>
+                <input type="email" id="contact_email" name="contact_email" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="contact_phone" class="form-label">Phone Number</label>
+                <input type="tel" id="contact_phone" name="contact_phone" class="form-input" required>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary">Submit Report</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="section-title">Found Items</h1>
+    
+    <div class="filters">
+        <div class="filter-group">
+            <label for="filter-category" class="filter-label">Category:</label>
+            <select id="filter-category" class="filter-select">
+                <option value="all">All Categories</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Identification">Identification</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Books">Books</option>
+                <option value="Jewelry">Jewelry</option>
+                <option value="Keys">Keys</option>
+                <option value="Water Bottle">Water Bottle</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="filter-type" class="filter-label">Type:</label>
+            <select id="filter-type" class="filter-select">
+                <option value="found">Found Items Only</option>
+                <option value="lost">Lost Items Only</option>
+                <option value="all">All Items</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="items-grid">
+        {% for item in items %}
+        <div class="card">
+            {% if item.image %}
+            <img src="{{ item.image }}" alt="{{ item.title }}" class="card-img">
+            {% endif %}
+            <div class="card-content">
+                <div class="tags">
+                    <span class="badge badge-found">Found</span>
+                    <span class="tag">{{ item.category }}</span>
+                </div>
+                <h3 class="card-title">{{ item.title }}</h3>
+                <div class="card-meta">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                    <span>Found on: {{ item.date_found }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>{{ item.location }}</span>
+                </div>
+                <p class="card-description">{{ item.description }}</p>
+                <div class="card-actions">
+                    <a href="/claim/{{ item.id }}" class="btn btn-primary">Claim This Item</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div style="text-align: center; margin-top: 2rem; margin-bottom: 2rem;">
+        <a href="/report-found" class="btn btn-primary">Report a Found Item</a>
+    </div>
+</div>
+{% endblock %}

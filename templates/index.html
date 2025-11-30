@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <h1>University Lost & Found Center</h1>
+        <p>Lost something on campus? Found an item that belongs to someone else? Our online platform helps connect lost items with their owners.</p>
+        <div class="btn-group">
+            <a href="/report-lost" class="btn btn-primary">Report Lost Item</a>
+            <a href="/report-found" class="btn btn-secondary">Report Found Item</a>
+        </div>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-file-plus"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="12" x2="12" y1="18" y2="12"/><line x1="9" x2="15" y1="15" y2="15"/></svg>
+                </div>
+                <h3 class="feature-title">Report Items</h3>
+                <p>Submit details about lost or found items through our simple online forms.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </div>
+                <h3 class="feature-title">Browse & Search</h3>
+                <p>Look through our database of lost and found items to find what you're looking for.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <h3 class="feature-title">Claim Requests</h3>
+                <p>Submit a claim request with proof of ownership to recover your lost item.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-users"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3 class="feature-title">Get Connected</h3>
+                <p>We'll help connect you with the finder or owner to arrange for item return.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background-color: var(--neutral-200);">
+    <div class="container">
+        <h2 class="section-title">Lost & Found Statistics</h2>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number" data-count="156">0</div>
+                <div class="stat-label">Items Found</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" data-count="128">0</div>
+                <div class="stat-label">Items Returned</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" data-count="82">0</div>
+                <div class="stat-label">Happy Owners</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" data-count="94">0</div>
+                <div class="stat-label">Active Items</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Recent Found Items</h2>
+        <div class="items-grid">
+            {% for item in found_items[:3] %}
+            <div class="card slide-up">
+                {% if item.image %}
+                <img src="{{ item.image }}" alt="{{ item.title }}" class="card-img">
+                {% endif %}
+                <div class="card-content">
+                    <div class="tags">
+                        <span class="badge badge-found">Found</span>
+                        <span class="tag">{{ item.category }}</span>
+                    </div>
+                    <h3 class="card-title">{{ item.title }}</h3>
+                    <div class="card-meta">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                        <span>Found on: {{ item.date_found }}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>{{ item.location }}</span>
+                    </div>
+                    <p class="card-description">{{ item.description }}</p>
+                    <div class="card-actions">
+                        <a href="/claim/{{ item.id }}" class="btn btn-primary">Claim This Item</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="/found-items" class="btn btn-primary">View All Found Items</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

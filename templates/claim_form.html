@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="form-container">
+        <h1 class="form-title">Claim Item: {{ item.title }}</h1>
+        
+        <div class="card" style="margin-bottom: 2rem;">
+            {% if item.image %}
+            <img src="{{ item.image }}" alt="{{ item.title }}" class="card-img">
+            {% endif %}
+            <div class="card-content">
+                <div class="tags">
+                    <span class="badge badge-found">Found</span>
+                    <span class="tag">{{ item.category }}</span>
+                </div>
+                <h3 class="card-title">{{ item.title }}</h3>
+                <div class="card-meta">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                    <span>Found on: {{ item.date_found }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>{{ item.location }}</span>
+                </div>
+                <p class="card-description">{{ item.description }}</p>
+            </div>
+        </div>
+        
+        <form action="/claim/{{ item.id }}" method="post">
+            <div class="form-group">
+                <label for="claimant_name" class="form-label">Your Name</label>
+                <input type="text" id="claimant_name" name="claimant_name" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="claimant_email" class="form-label">Email Address</label>
+                <input type="email" id="claimant_email" name="claimant_email" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="claimant_phone" class="form-label">Phone Number</label>
+                <input type="tel" id="claimant_phone" name="claimant_phone" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="proof_description" class="form-label">Proof of Ownership</label>
+                <textarea id="proof_description" name="proof_description" class="form-textarea" required placeholder="Please describe the item in detail and provide any information that proves you are the owner (e.g., specific marks, content, serial number, etc.)"></textarea>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary">Submit Claim</button>
+                <a href="/found-items" class="btn btn-secondary" style="margin-left: 1rem;">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
