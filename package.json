@@ -1,10 +1,13 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "university-lost-and-found",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "python3 app.py",
+    "dev": "python3 app.py",
+    "flask": "python3 app.py",
+    "dev:react": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
